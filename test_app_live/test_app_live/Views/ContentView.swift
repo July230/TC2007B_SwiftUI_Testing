@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var userName: String = ""
+    @State var count: Int = 0
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack (spacing:20){
+            TextField("Enter your name", text: $userName)
+                .accessibilityIdentifier("nameTextField")
+            Button("Submit"){
+                count = count + 1
+            }
+            .accessibilityIdentifier("submitButton")
+            Text("Welcome, \(userName) Count: \(count)")
+                .accessibilityIdentifier("welcomeText")
         }
         .padding()
     }
