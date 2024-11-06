@@ -15,7 +15,4 @@ struct User {
     func isAdult() -> Bool {
         age >= 18
     }
-    
-    
-    
 }
