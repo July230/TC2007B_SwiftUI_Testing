@@ -40,4 +40,26 @@ final class test_app_liveUITests: XCTestCase {
             }
         }
     }
+    
+    @MainActor
+    func testContentViewInteraction() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        // Localizar el textfield e ingresar el texto
+        let nameTextField = app.textFields["nameTextField"]
+        XCTAssertTrue(nameTextField.exists, "The name text field should exist")
+        nameTextField.tap()
+        nameTextField.typeText("Alice")
+        
+        // Localizar boton y presionarlo
+        let submitButton = app.buttons["submitButton"]
+        XCTAssertTrue(submitButton.exists, "The submit button should exist")
+        submitButton.tap()
+        
+        // Verificar el texto en la vista de texto
+        let welcomeText = app.staticTexts["welcomeText"]
+        XCTAssertTrue(welcomeText.exists, "The welcome text should exist")
+        welcomeText.staticTexts("Welcome: ")
+    }
 }
